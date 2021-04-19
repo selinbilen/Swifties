@@ -19,6 +19,9 @@
 		172B1069262DC97F002B826C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 172B1068262DC97F002B826C /* FirebaseStorage */; };
 		172B106B262DC97F002B826C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 172B106A262DC97F002B826C /* FirebaseAuth */; };
 		172B106D262DC97F002B826C /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 172B106C262DC97F002B826C /* FirebaseDynamicLinks */; };
+		1B1178DE262E091A000E8CE4 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B1178DD262E091A000E8CE4 /* Storyboard.storyboard */; };
+		1B1178E1262E0942000E8CE4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1178E0262E0942000E8CE4 /* GameKit.framework */; };
+		1B1178E5262E0A99000E8CE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1178E4262E0A99000E8CE4 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,9 @@
 		172B1050262DC5A9002B826C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		172B1052262DC5A9002B826C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		172B105C262DC7C8002B826C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1B1178DD262E091A000E8CE4 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		1B1178E0262E0942000E8CE4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		1B1178E4262E0A99000E8CE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 				172B1069262DC97F002B826C /* FirebaseStorage in Frameworks */,
 				172B106D262DC97F002B826C /* FirebaseDynamicLinks in Frameworks */,
 				172B1063262DC97F002B826C /* FirebaseAppDistribution-Beta in Frameworks */,
+				1B1178E1262E0942000E8CE4 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +61,7 @@
 			children = (
 				172B1048262DC5A8002B826C /* scavenger hunt ar */,
 				172B1047262DC5A8002B826C /* Products */,
+				1B1178DF262E0942000E8CE4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +78,8 @@
 			children = (
 				172B1049262DC5A8002B826C /* scavenger_hunt_arApp.swift */,
 				172B104B262DC5A8002B826C /* ContentView.swift */,
+				1B1178DD262E091A000E8CE4 /* Storyboard.storyboard */,
+				1B1178E4262E0A99000E8CE4 /* ViewController.swift */,
 				172B104D262DC5A9002B826C /* Assets.xcassets */,
 				172B1052262DC5A9002B826C /* Info.plist */,
 				172B105C262DC7C8002B826C /* GoogleService-Info.plist */,
@@ -84,6 +94,14 @@
 				172B1050262DC5A9002B826C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1B1178DF262E0942000E8CE4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1B1178E0262E0942000E8CE4 /* GameKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				172B1051262DC5A9002B826C /* Preview Assets.xcassets in Resources */,
+				1B1178DE262E091A000E8CE4 /* Storyboard.storyboard in Resources */,
 				172B104E262DC5A9002B826C /* Assets.xcassets in Resources */,
 				172B105D262DC7C8002B826C /* GoogleService-Info.plist in Resources */,
 			);
@@ -168,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B1178E5262E0A99000E8CE4 /* ViewController.swift in Sources */,
 				172B104C262DC5A8002B826C /* ContentView.swift in Sources */,
 				172B104A262DC5A8002B826C /* scavenger_hunt_arApp.swift in Sources */,
 			);
