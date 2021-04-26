@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "aude-andre-saturnio-_U8r2fy4_BI-unsplash-1.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "aude-andre-saturnio-_U8r2fy4_BI-unsplash.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "aude-andre-saturnio-_U8r2fy4_BI-unsplash-2.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
