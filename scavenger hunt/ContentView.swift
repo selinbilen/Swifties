@@ -137,12 +137,28 @@ struct LobbyView: View {
         docRef.document(room.id).setData(["nickname": room.nickname, "participants": room.participants, "startTime": room.startTime as Any])
     }
     
+    func actionSheet() {
+        let urlShare = "\(room.id)"
+        
+        let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
+    }
+    
     var body: some View {
         VStack {
             Spacer()
             
             ForEach(room.participants, id: \.self) {
                 participantId in AvatarView(participantId: participantId)
+            }
+            
+            Spacer()
+            
+            Button(action: actionSheet) {
+                Image(systemName: "square.and.arrow.up")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 25, height: 25)
             }
             
             Spacer()
@@ -183,7 +199,7 @@ struct LobbyView: View {
                     })
             }
         }
-        .navigationTitle("Lobby")
+        .navigationTitle("\(room.nickname)'s Lobby")
         .onAppear {
             streamRoom()
         }
@@ -232,6 +248,7 @@ struct HostView: View {
                 Text("Lobby")
                     .font(.title3)
             }
+            .disabled(room.nickname == "")
         }
         .padding(.horizontal, 30)
         .navigationTitle("Host")
@@ -251,6 +268,33 @@ struct HostView: View {
 struct JoinView: View {
     @Binding var participant: Participant
     @State var room = Room(id: "", nickname: "", participants: [])
+    
+    func streamRoom() {
+        database.collection("rooms").document(room.id)
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                
+                guard let data = document.data() else {
+                    print("Document data was empty.")
+                    return
+                }
+                
+                room.nickname = data["nickname"] as! String
+                room.participants = data["participants"] as! [String]
+            }
+    }
+    
+    func updateRoom() {
+        if(!room.participants.contains(participant.id.uuidString)) {
+            room.participants.append(participant.id.uuidString)
+        }
+        
+        let docRef = database.collection("rooms")
+        docRef.document(room.id).setData(["nickname": room.nickname, "participants": room.participants])
+    }
     
     var body: some View {
         VStack {
@@ -275,9 +319,24 @@ struct JoinView: View {
             }
             
             Spacer()
+            
+            Button(action: {
+                updateRoom()
+            }, label: {
+                Text("Join Room")
+            })
+            .disabled(room.id == "")
+            
+            NavigationLink(destination: LobbyView(room: $room, participant: $participant), isActive: .constant(room.participants.contains(participant.id.uuidString))) {
+                EmptyView()
+            }
+            
         }
         .padding(.horizontal, 30)
         .navigationTitle("Join")
+        .onChange(of: room.id, perform: { value in
+            streamRoom()
+        })
     }
 }
 
@@ -342,7 +401,7 @@ struct ContentView: View {
             .onChange(of: participant.nickname, perform: { value in
                 updateParticipant()
             })
-            .navigationTitle("Quiz Game")
+            .navigationTitle("Game ")
         })
     }
 }
