@@ -24,19 +24,6 @@ struct ParticipantGameplay: Identifiable {
     var score: Int = 0 // numerical score
 }
 
-// Helpful video for working with date objects https://www.youtube.com/watch?v=Le8VmQyZWYw
-
-struct LeaderboardView: View {
-    @Binding var RoomObj: Room
-    
-    var body: some View {
-        VStack {
-            Text("Leaderboard for Room \(RoomObj.id)")
-        }
-        .navigationTitle("Leaderboard View")
-    }
-}
-
 let exampleParticipantGameplays = [
     ParticipantGameplay(participantId: "1001", checkpointTime: Date().addingTimeInterval(42)),
     ParticipantGameplay(participantId: "1002", checkpointTime: Date().addingTimeInterval(131)),
@@ -44,12 +31,33 @@ let exampleParticipantGameplays = [
     ParticipantGameplay(participantId: "1004", checkpointTime: Date().addingTimeInterval(256)),
 ]
 
-struct GameView: View {
+// Helpful video for working with date objects https://www.youtube.com/watch?v=Le8VmQyZWYw
+
+struct LeaderboardView: View {
+    @Binding var room: Room
+    @Binding var participant: Participant
+    
     var body: some View {
         VStack {
-            
+            Text("Leaderboard for Room \(room.id)")
         }
-        .navigationTitle("Game")
+        .navigationTitle("Leaderboard View")
+    }
+}
+
+struct GameView: View {
+    @Binding var room: Room
+    @Binding var participant: Participant
+
+    var body: some View {
+        VStack {
+            NavigationLink(
+                destination: LeaderboardView(room: $room, participant: $participant),
+                label: {
+                    Text("Navigate to Leaderboard")
+                })
+        }
+        .navigationTitle("Gameplay View")
     }
 }
 
@@ -182,7 +190,7 @@ struct LobbyView: View {
                     if(timeRemaining == 0) {
                         Text("Good Luck!")
                         
-                        NavigationLink(destination: GameView(), isActive: .constant(timeRemaining == 0)) {
+                        NavigationLink(destination: GameView(room: $room, participant: $participant), isActive: .constant(timeRemaining == 0)) {
                             EmptyView()
                         }
                     } else {
@@ -193,7 +201,7 @@ struct LobbyView: View {
             
             if(timeRemaining < 0) {
                 NavigationLink(
-                    destination: GameView(),
+                    destination: GameView(room: $room, participant: $participant),
                     label: {
                         Text("Resume")
                     })
