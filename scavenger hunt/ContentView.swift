@@ -7,7 +7,10 @@ struct Room: Identifiable {
     var id = UUID().uuidString // id for every room instance
     var nickname: String // name of room
     var participants: [String] // array of participant uuids
-    var startTime: Date? = nil // date-time the game started
+    var startTime: Timestamp? = nil // date-time the game started
+    var gameplays: [String] = []
+    var maxRound: Int = 5
+    var gameplayIndex: Int = 0
 }
 
 struct Participant: Identifiable {
@@ -16,22 +19,6 @@ struct Participant: Identifiable {
     var roomId: String = ""
     var isHost: Bool = false
 }
-
-struct ParticipantGameplay: Identifiable {
-    let id = UUID() // id for every ParticipantGameplay instance
-    let participantId: String // id of Participant
-    var checkpointTime: Date // date-time the player found an object
-    var score: Int = 0 // numerical score
-}
-
-let exampleParticipantGameplays = [
-    ParticipantGameplay(participantId: "1001", checkpointTime: Date().addingTimeInterval(42)),
-    ParticipantGameplay(participantId: "1002", checkpointTime: Date().addingTimeInterval(131)),
-    ParticipantGameplay(participantId: "1003", checkpointTime: Date().addingTimeInterval(34)),
-    ParticipantGameplay(participantId: "1004", checkpointTime: Date().addingTimeInterval(256)),
-]
-
-// Helpful video for working with date objects https://www.youtube.com/watch?v=Le8VmQyZWYw
 
 struct LeaderboardView: View {
     @Binding var room: Room
@@ -48,16 +35,136 @@ struct LeaderboardView: View {
 struct GameView: View {
     @Binding var room: Room
     @Binding var participant: Participant
-
+    
+    struct Gameplay {
+        var id: String
+        var participants: [String]
+        var timestamps: [Timestamp]
+    }
+    
+    @State var currGameplay = Gameplay(id: "", participants: [], timestamps: [])
+    
+    func streamRoom() {
+        database.collection("rooms").document(room.id)
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                
+                guard let data = document.data() else {
+                    print("Document data was empty.")
+                    return
+                }
+                
+                room.gameplays = data["gameplays"] as! [String]
+                room.gameplayIndex = data["gameplayIndex"] as! Int
+                currGameplay.id = room.gameplays[room.gameplayIndex]
+            }
+    }
+    
+    func streamGameplay() {
+        database.collection("gameplays").document(room.gameplays[room.gameplayIndex])
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                
+                guard let data = document.data() else {
+                    print("Document data was empty.")
+                    return
+                }
+                
+                
+                currGameplay.participants = data["participants"] as! [String]
+                currGameplay.timestamps = data["timestamps"] as! [Timestamp]
+            }
+    }
+    
+    func updateGameplay() {
+        let docRef = database.collection("gameplays")
+        docRef.document(currGameplay.id).updateData(["participants": FieldValue.arrayUnion([participant.id.uuidString]),
+                                                     "timestamps": FieldValue.arrayUnion([Date()])])
+    }
+    
+    func hasResponded(participantId: String) -> Bool {
+        return currGameplay.participants.contains(participantId)
+    }
+    
     var body: some View {
         VStack {
-            NavigationLink(
-                destination: LeaderboardView(room: $room, participant: $participant),
-                label: {
-                    Text("Navigate to Leaderboard")
-                })
+            //            NavigationLink(
+            //                destination: LeaderboardView(room: $room, participant: $participant),
+            //                label: {
+            //                    Text("Navigate to Leaderboard")
+            //                })
+            
+            Spacer()
+            
+            Button(action: {
+                updateGameplay()
+            }, label: {
+                Text("Checkpoint!");
+            }).disabled(currGameplay.participants.contains(participant.id.uuidString))
+            
+            Spacer()
+            
+            HStack {
+                ForEach(room.participants, id: \.self) {
+                    participantId in AvatarGameplayView(participantId: participantId, hasResponded: hasResponded(participantId: participantId))
+                }
+            }
         }
         .navigationTitle("Gameplay View")
+        .onAppear {
+            streamRoom()
+            streamGameplay()
+        }
+    }
+}
+
+struct AvatarGameplayView: View {
+    var participantId: String
+    var hasResponded: Bool
+    @State var participant = Participant(nickname: "")
+    
+    func streamParticipant() {
+        database.collection("participants").document(participantId)
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                
+                guard let data = document.data() else {
+                    print("Document data was empty.")
+                    return
+                }
+                
+                participant.nickname = data["nickname"] as! String
+            }
+    }
+    
+    var body: some View {
+        HStack {
+            VStack {
+                Circle()
+                    .size(CGSize(width: 75.0, height: 75.0))
+                    .frame(width: 75.0, height: 75.0)
+                    .foregroundColor(Color(red: 0.98, green: 0.98, blue: 0.98))
+                    .overlay(Circle().stroke(hasResponded ? Color.blue : Color(red: 0.98, green: 0.98, blue: 0.98), lineWidth: 3)).foregroundColor(nil)
+                
+                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    Text("\(participant.nickname)")
+                })
+                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+            }
+        }
+        .padding(.horizontal, 30)
+        .onAppear {
+            streamParticipant()
+        }
     }
 }
 
@@ -92,7 +199,6 @@ struct AvatarView: View {
             VStack {
                 HStack {
                     Text("\(participant.nickname)")
-                        .frame(width: .infinity, alignment: .leading)
                     
                     Spacer()
                 }
@@ -134,15 +240,17 @@ struct LobbyView: View {
                 }
                 
                 room.participants = data["participants"] as! [String]
-                if(room.startTime != nil) {
-                    timeRemaining = Int(Date().distance(to: room.startTime!))
+
+                if(data["startTime"] != nil) {
+                    let startTime = (data["startTime"] as AnyObject).dateValue()
+                    timeRemaining = Int(Date().distance(to: startTime))
                 }
             }
     }
     
     func updateRoom() {
         let docRef = database.collection("rooms")
-        docRef.document(room.id).setData(["nickname": room.nickname, "participants": room.participants, "startTime": room.startTime as Any])
+        docRef.document(room.id).updateData(["gameplays": room.gameplays, "startTime": room.startTime as Any])
     }
     
     func actionSheet() {
@@ -173,7 +281,15 @@ struct LobbyView: View {
             
             if(room.participants[0] == participant.id.uuidString) {
                 Button(action: {
-                    room.startTime = Date().addingTimeInterval(11)
+                    room.startTime = Timestamp(date: Date().addingTimeInterval(4))
+                    
+                    for _ in 1...room.maxRound {
+                        let gameplayId = UUID().uuidString
+                        
+                        let docRef = database.collection("gameplays")
+                        docRef.document(gameplayId).setData(["participants": [], "timestamps": []])
+                        room.gameplays.append(gameplayId)
+                    }
                     
                     updateRoom()
                 }, label: {
@@ -181,7 +297,7 @@ struct LobbyView: View {
                         Text("Begin Game")
                     }
                 })
-                .disabled(room.participants.count == 1)
+                .disabled(room.participants.count < 1)
             }
             
             if(room.startTime != nil && timeRemaining >= 0) {
@@ -189,14 +305,14 @@ struct LobbyView: View {
                 }, label: {
                     if(timeRemaining == 0) {
                         Text("Good Luck!")
-                        
-                        NavigationLink(destination: GameView(room: $room, participant: $participant), isActive: .constant(timeRemaining == 0)) {
-                            EmptyView()
-                        }
                     } else {
                         Text("\(timeRemaining)")
                     }
                 })
+            }
+            
+            NavigationLink(destination: GameView(room: $room, participant: $participant), isActive: .constant(timeRemaining == 0)) {
+                EmptyView()
             }
             
             if(timeRemaining < 0) {
@@ -225,7 +341,7 @@ struct HostView: View {
     
     func updateRoom() {
         let docRef = database.collection("rooms")
-        docRef.document(room.id).setData(["nickname": room.nickname, "participants": room.participants])
+        docRef.document(room.id).setData(["nickname": room.nickname, "participants": room.participants, "gameplays": room.gameplays, "gameplayIndex": room.gameplayIndex, "maxRound": room.maxRound])
     }
     
     var body: some View {
@@ -292,16 +408,13 @@ struct JoinView: View {
                 
                 room.nickname = data["nickname"] as! String
                 room.participants = data["participants"] as! [String]
+                room.gameplays = data["gameplays"] as! [String]
             }
     }
     
-    func updateRoom() {
-        if(!room.participants.contains(participant.id.uuidString)) {
-            room.participants.append(participant.id.uuidString)
-        }
-        
+    func updateRoom() {        
         let docRef = database.collection("rooms")
-        docRef.document(room.id).setData(["nickname": room.nickname, "participants": room.participants])
+        docRef.document(room.id).updateData(["participants": FieldValue.arrayUnion([participant.id.uuidString])])
     }
     
     var body: some View {
