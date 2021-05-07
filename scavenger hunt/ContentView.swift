@@ -3,6 +3,18 @@ import Firebase
 
 var database = Firestore.firestore()
 
+struct Question {
+    var prompt: String?
+    var options: [String]
+}
+
+let questions = [
+    Question(prompt: "Prompt 1", options: ["Option A", "Option B", "Option C", "Option D"]),
+    Question(prompt: "Prompt 2", options: ["Option A", "Option B", "Option C", "Option D"]),
+    Question(prompt: "Prompt 3", options: ["Option A", "Option B", "Option C", "Option D"]),
+    Question(prompt: "Prompt 3", options: ["Option A", "Option B", "Option C", "Option D"])
+]
+
 struct Room: Identifiable {
     var id = UUID().uuidString // id for every room instance
     var nickname: String // name of room
@@ -84,8 +96,12 @@ struct GameView: View {
     
     func updateGameplay() {
         let docRef = database.collection("gameplays")
-        docRef.document(currGameplay.id).updateData(["participants": FieldValue.arrayUnion([participant.id.uuidString]),
-                                                     "timestamps": FieldValue.arrayUnion([Date()])])
+        docRef.document(currGameplay.id).updateData(["participants": FieldValue.arrayUnion([participant.id.uuidString]), "timestamps": FieldValue.arrayUnion([Date()])])
+    }
+    
+    func incrementGameplayIndex() {
+        let docRef = database.collection("rooms")
+        docRef.document(room.id).updateData(["gameplayIndex": room.gameplayIndex+1])
     }
     
     func hasResponded(participantId: String) -> Bool {
@@ -94,19 +110,61 @@ struct GameView: View {
     
     var body: some View {
         VStack {
-            //            NavigationLink(
-            //                destination: LeaderboardView(room: $room, participant: $participant),
-            //                label: {
-            //                    Text("Navigate to Leaderboard")
-            //                })
-            
             Spacer()
             
-            Button(action: {
-                updateGameplay()
-            }, label: {
-                Text("Checkpoint!");
-            }).disabled(currGameplay.participants.contains(participant.id.uuidString))
+            HStack {
+                ZStack {
+                    RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    
+                    Button(action: {
+                        updateGameplay()
+                    }, label: {
+                        Text("Checkpoint!")
+                            .foregroundColor(.white)
+                    }).disabled(currGameplay.participants.contains(participant.id.uuidString))
+                }
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.red)
+                    
+                    Button(action: {
+                        updateGameplay()
+                    }, label: {
+                        Text("Checkpoint!")
+                            .foregroundColor(.white)
+                    }).disabled(currGameplay.participants.contains(participant.id.uuidString))
+                }
+            }
+            .padding(10)
+            
+            HStack {
+                ZStack {
+                    RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.green)
+                    
+                    Button(action: {
+                        updateGameplay()
+                    }, label: {
+                        Text("Checkpoint!")
+                            .foregroundColor(.white)
+                    }).disabled(currGameplay.participants.contains(participant.id.uuidString))
+                }
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.yellow)
+                    
+                    Button(action: {
+                        updateGameplay()
+                    }, label: {
+                        Text("Checkpoint!")
+                            .foregroundColor(.white)
+                    }).disabled(currGameplay.participants.contains(participant.id.uuidString))
+                }
+            }
+            .padding(10)
             
             Spacer()
             
@@ -115,12 +173,21 @@ struct GameView: View {
                     participantId in AvatarGameplayView(participantId: participantId, hasResponded: hasResponded(participantId: participantId))
                 }
             }
+            
+            NavigationLink(destination: LeaderboardView(room: $room, participant: $participant), isActive: .constant(room.gameplayIndex == 3)) {
+                EmptyView()
+            }
         }
-        .navigationTitle("Gameplay View")
+        .navigationTitle("\(questions[room.gameplayIndex].prompt!)")
         .onAppear {
             streamRoom()
             streamGameplay()
         }
+        .onChange(of: currGameplay.participants, perform: { value in
+            if(currGameplay.participants.count == room.participants.count) {
+                incrementGameplayIndex()
+            }
+        })
     }
 }
 
@@ -240,7 +307,7 @@ struct LobbyView: View {
                 }
                 
                 room.participants = data["participants"] as! [String]
-
+                
                 if(data["startTime"] != nil) {
                     let startTime = (data["startTime"] as AnyObject).dateValue()
                     timeRemaining = Int(Date().distance(to: startTime))
