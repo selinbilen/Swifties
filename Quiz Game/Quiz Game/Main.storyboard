@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gZ3-iV-i4w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gZ3-iV-i4w">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -38,7 +38,7 @@
                                 </state>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="QtP-3z-eLs">
-                                <rect key="frame" x="46" y="95" width="323" height="328"/>
+                                <rect key="frame" x="46" y="70" width="323" height="387"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -49,6 +49,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nEy-HL-8LW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-872.46376811594212" y="79.6875"/>
+        </scene>
+        <!--End View Controller-->
+        <scene sceneID="yNq-qM-LtH">
+            <objects>
+                <viewController storyboardIdentifier="endGame" id="uG0-P2-2IO" customClass="EndViewController" customModule="Quiz_Game" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JjJ-vf-F0l">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="r1M-EQ-70w">
+                                <rect key="frame" x="46" y="69" width="323" height="328"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GyJ-Sy-vOY">
+                                <rect key="frame" x="20" y="581" width="374" height="228"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0051590669899999999" green="0.43734544520000002" blue="0.27056390050000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <state key="normal" title=" Restart the game">
+                                    <color key="titleColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="RestartGame:" destination="uG0-P2-2IO" eventType="touchUpInside" id="8rr-dc-KI9"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uX9-gx-sLB">
+                                <rect key="frame" x="114" y="456" width="186" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <color key="textColor" red="0.1194311711" green="0.39656344329999998" blue="0.23889393270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Leq-fw-J4I"/>
+                        <color key="backgroundColor" red="0.96926155475654985" green="0.96926155475654985" blue="0.96926155475654985" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <connections>
+                        <outlet property="RestartButton" destination="GyJ-Sy-vOY" id="LTC-EH-wvU"/>
+                        <outlet property="ScoreLabel" destination="uX9-gx-sLB" id="me4-Af-HL9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fIn-q8-Uop" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="640.57971014492762" y="-224.33035714285714"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -89,30 +133,26 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rq8-o1-HL3" userLabel="QuestionView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="310"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Do you know where this magnificent building was built which is  a temple for the gods? " textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2DR-d8-l2E" userLabel="Question">
-                                                <rect key="frame" x="20" y="1" width="374" height="89"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="398" id="EDe-PG-k5n"/>
-                                                    <constraint firstAttribute="height" constant="89" id="iDv-Gp-7q6"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="q1" translatesAutoresizingMaskIntoConstraints="NO" id="FJg-qf-WDX" userLabel="ImageView">
-                                                <rect key="frame" x="20" y="98" width="374" height="213"/>
+                                                <rect key="frame" x="8" y="98" width="398" height="213"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="398" id="GQU-iv-8Xs"/>
                                                     <constraint firstAttribute="height" constant="213" id="KeN-kA-WGp"/>
                                                 </constraints>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Do you know where this magnificent building was built which is  a temple for the gods? " textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2DR-d8-l2E" userLabel="Question">
+                                                <rect key="frame" x="20" y="0.0" width="376" height="89"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.9686403871" green="0.9686041474" blue="0.96862870450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstItem="FJg-qf-WDX" firstAttribute="top" secondItem="2DR-d8-l2E" secondAttribute="bottom" constant="8" id="Kcc-DX-sNh"/>
-                                            <constraint firstItem="FJg-qf-WDX" firstAttribute="top" secondItem="2DR-d8-l2E" secondAttribute="bottom" constant="8" id="Tva-h4-8AO"/>
-                                            <constraint firstItem="FJg-qf-WDX" firstAttribute="leading" secondItem="2DR-d8-l2E" secondAttribute="leading" id="U1A-KM-Job"/>
-                                            <constraint firstItem="2DR-d8-l2E" firstAttribute="top" secondItem="rq8-o1-HL3" secondAttribute="top" constant="1" id="Xil-cC-lUc"/>
+                                            <constraint firstAttribute="bottom" secondItem="FJg-qf-WDX" secondAttribute="bottom" constant="-1" id="Ubo-Ak-Tgs"/>
+                                            <constraint firstItem="FJg-qf-WDX" firstAttribute="leading" secondItem="rq8-o1-HL3" secondAttribute="leading" constant="20" symbolic="YES" id="a94-Vz-oi7"/>
+                                            <constraint firstAttribute="trailing" secondItem="FJg-qf-WDX" secondAttribute="trailing" constant="20" symbolic="YES" id="j2l-yx-KTF"/>
                                             <constraint firstItem="FJg-qf-WDX" firstAttribute="leading" secondItem="rq8-o1-HL3" secondAttribute="leadingMargin" id="vat-Ez-1WW"/>
                                         </constraints>
                                     </view>
@@ -179,6 +219,12 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="w72-qU-iqM" firstAttribute="top" secondItem="4Hs-Ul-yBB" secondAttribute="top" id="hW2-tu-Otz"/>
+                                                    <constraint firstItem="w72-qU-iqM" firstAttribute="leading" secondItem="4Hs-Ul-yBB" secondAttribute="leading" id="iUM-95-NQG"/>
+                                                    <constraint firstItem="a76-Ee-qXu" firstAttribute="top" secondItem="w72-qU-iqM" secondAttribute="bottom" constant="20" id="vNU-74-6BE"/>
+                                                    <constraint firstAttribute="trailing" secondItem="w72-qU-iqM" secondAttribute="trailing" id="wfE-Ua-TG7"/>
+                                                </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.9686403871" green="0.9686041474" blue="0.96862870450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -199,12 +245,19 @@
                         <constraints>
                             <constraint firstItem="A9G-4Y-uJ8" firstAttribute="top" secondItem="9fK-jE-jJN" secondAttribute="bottom" constant="8" symbolic="YES" id="2Dn-jR-DPC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="A9G-4Y-uJ8" secondAttribute="bottom" constant="21" id="9Xj-ts-g9s"/>
+                            <constraint firstItem="A9G-4Y-uJ8" firstAttribute="top" secondItem="9fK-jE-jJN" secondAttribute="bottom" constant="8" symbolic="YES" id="GmI-b9-I9X"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="A9G-4Y-uJ8" secondAttribute="bottom" constant="21" id="Hde-Lc-KRg"/>
                             <constraint firstAttribute="trailing" secondItem="9fK-jE-jJN" secondAttribute="trailing" id="Nnt-9N-nz9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9fK-jE-jJN" secondAttribute="bottom" constant="750" id="cq9-LW-MGI"/>
                             <constraint firstItem="A9G-4Y-uJ8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jva-sF-qJD"/>
+                            <constraint firstItem="9fK-jE-jJN" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="pJF-Pr-MYn"/>
+                            <constraint firstItem="A9G-4Y-uJ8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sXK-5b-gaA"/>
                             <constraint firstItem="9fK-jE-jJN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="syf-ZM-L32"/>
+                            <constraint firstItem="9fK-jE-jJN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tcz-bO-DEw"/>
+                            <constraint firstItem="A9G-4Y-uJ8" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="uks-Ci-x9b"/>
                             <constraint firstItem="9fK-jE-jJN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="-10" id="wB2-bN-U9v"/>
                             <constraint firstAttribute="trailing" secondItem="A9G-4Y-uJ8" secondAttribute="trailing" id="x2g-gR-C8t"/>
+                            <constraint firstItem="9fK-jE-jJN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="-10" id="xyj-LD-7gj"/>
                         </constraints>
                     </view>
                     <connections>

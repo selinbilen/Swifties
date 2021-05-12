@@ -7,24 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B71EF85264C9B2600142C03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B71EF84264C9B2600142C03 /* Main.storyboard */; };
+		1B71EF87264C9B5000142C03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71EF86264C9B5000142C03 /* ViewController.swift */; };
+		1B71EF89264C9B6100142C03 /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71EF88264C9B6100142C03 /* EndViewController.swift */; };
 		6ABDE0B22634D49E00E1BE2B /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABDE0B12634D49E00E1BE2B /* Questions.swift */; };
 		6ABDE0B52634D5C400E1BE2B /* ProvidedQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABDE0B42634D5C400E1BE2B /* ProvidedQuestions.swift */; };
 		6AEF9F3D263475B200D89D55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF9F3C263475B200D89D55 /* AppDelegate.swift */; };
 		6AEF9F3F263475B200D89D55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF9F3E263475B200D89D55 /* SceneDelegate.swift */; };
-		6AEF9F41263475B200D89D55 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF9F40263475B200D89D55 /* ViewController.swift */; };
-		6AEF9F44263475B200D89D55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AEF9F42263475B200D89D55 /* Main.storyboard */; };
 		6AEF9F46263475B400D89D55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AEF9F45263475B400D89D55 /* Assets.xcassets */; };
 		6AEF9F49263475B400D89D55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AEF9F47263475B400D89D55 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B71EF84264C9B2600142C03 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		1B71EF86264C9B5000142C03 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1B71EF88264C9B6100142C03 /* EndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndViewController.swift; sourceTree = "<group>"; };
 		6ABDE0B12634D49E00E1BE2B /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		6ABDE0B42634D5C400E1BE2B /* ProvidedQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidedQuestions.swift; sourceTree = "<group>"; };
 		6AEF9F39263475B200D89D55 /* Quiz Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quiz Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AEF9F3C263475B200D89D55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AEF9F3E263475B200D89D55 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6AEF9F40263475B200D89D55 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6AEF9F43263475B200D89D55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6AEF9F45263475B400D89D55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AEF9F48263475B400D89D55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6AEF9F4A263475B400D89D55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,9 +64,10 @@
 			children = (
 				6AEF9F3C263475B200D89D55 /* AppDelegate.swift */,
 				6AEF9F3E263475B200D89D55 /* SceneDelegate.swift */,
-				6AEF9F40263475B200D89D55 /* ViewController.swift */,
-				6AEF9F42263475B200D89D55 /* Main.storyboard */,
+				1B71EF86264C9B5000142C03 /* ViewController.swift */,
+				1B71EF88264C9B6100142C03 /* EndViewController.swift */,
 				6AEF9F45263475B400D89D55 /* Assets.xcassets */,
+				1B71EF84264C9B2600142C03 /* Main.storyboard */,
 				6AEF9F47263475B400D89D55 /* LaunchScreen.storyboard */,
 				6AEF9F4A263475B400D89D55 /* Info.plist */,
 				6ABDE0B12634D49E00E1BE2B /* Questions.swift */,
@@ -130,9 +133,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B71EF85264C9B2600142C03 /* Main.storyboard in Resources */,
 				6AEF9F49263475B400D89D55 /* LaunchScreen.storyboard in Resources */,
 				6AEF9F46263475B400D89D55 /* Assets.xcassets in Resources */,
-				6AEF9F44263475B200D89D55 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +146,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AEF9F41263475B200D89D55 /* ViewController.swift in Sources */,
+				1B71EF89264C9B6100142C03 /* EndViewController.swift in Sources */,
+				1B71EF87264C9B5000142C03 /* ViewController.swift in Sources */,
 				6ABDE0B22634D49E00E1BE2B /* Questions.swift in Sources */,
 				6ABDE0B52634D5C400E1BE2B /* ProvidedQuestions.swift in Sources */,
 				6AEF9F3D263475B200D89D55 /* AppDelegate.swift in Sources */,
@@ -154,14 +158,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6AEF9F42263475B200D89D55 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6AEF9F43263475B200D89D55 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6AEF9F47263475B400D89D55 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
