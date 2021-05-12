@@ -12,7 +12,9 @@ let questions = [
     Question(prompt: "Prompt 1", options: ["Option A", "Option B", "Option C", "Option D"]),
     Question(prompt: "Prompt 2", options: ["Option A", "Option B", "Option C", "Option D"]),
     Question(prompt: "Prompt 3", options: ["Option A", "Option B", "Option C", "Option D"]),
-    Question(prompt: "Prompt 3", options: ["Option A", "Option B", "Option C", "Option D"])
+    Question(prompt: "Prompt 4", options: ["Option A", "Option B", "Option C", "Option D"]),
+    Question(prompt: "Prompt 5", options: ["Option A", "Option B", "Option C", "Option D"]),
+    Question(prompt: "Prompt 6", options: ["Option A", "Option B", "Option C", "Option D"]),
 ]
 
 struct Room: Identifiable {
@@ -26,10 +28,8 @@ struct Room: Identifiable {
 }
 
 struct Participant: Identifiable {
-    let id = UUID()
+    let id = UUID().uuidString
     var nickname: String
-    var roomId: String = ""
-    var isHost: Bool = false
 }
 
 struct LeaderboardView: View {
@@ -55,6 +55,7 @@ struct GameView: View {
     }
     
     @State var currGameplay = Gameplay(id: "", participants: [], timestamps: [])
+    @State var gameplayListener : ListenerRegistration?
     
     func streamRoom() {
         database.collection("rooms").document(room.id)
@@ -71,12 +72,18 @@ struct GameView: View {
                 
                 room.gameplays = data["gameplays"] as! [String]
                 room.gameplayIndex = data["gameplayIndex"] as! Int
+                
+                if(currGameplay.id != room.gameplays[room.gameplayIndex]) {
+                    gameplayListener?.remove()
+                    streamGameplay()
+                }
+                
                 currGameplay.id = room.gameplays[room.gameplayIndex]
             }
     }
     
     func streamGameplay() {
-        database.collection("gameplays").document(room.gameplays[room.gameplayIndex])
+        gameplayListener = database.collection("gameplays").document(room.gameplays[room.gameplayIndex])
             .addSnapshotListener { documentSnapshot, error in
                 guard let document = documentSnapshot else {
                     print("Error fetching document: \(error!)")
@@ -96,12 +103,14 @@ struct GameView: View {
     
     func updateGameplay() {
         let docRef = database.collection("gameplays")
-        docRef.document(currGameplay.id).updateData(["participants": FieldValue.arrayUnion([participant.id.uuidString]), "timestamps": FieldValue.arrayUnion([Date()])])
+        docRef.document(currGameplay.id).updateData(["participants": FieldValue.arrayUnion([participant.id]), "timestamps": FieldValue.arrayUnion([Date()])])
     }
     
     func incrementGameplayIndex() {
-        let docRef = database.collection("rooms")
-        docRef.document(room.id).updateData(["gameplayIndex": room.gameplayIndex+1])
+        if(participant.id == room.participants[0]) {
+            let docRef = database.collection("rooms")
+            docRef.document(room.id).updateData(["gameplayIndex": room.gameplayIndex+1])
+        }
     }
     
     func hasResponded(participantId: String) -> Bool {
@@ -120,9 +129,9 @@ struct GameView: View {
                     Button(action: {
                         updateGameplay()
                     }, label: {
-                        Text("Checkpoint!")
+                        Text("\(questions[room.gameplayIndex].options[0])")
                             .foregroundColor(.white)
-                    }).disabled(currGameplay.participants.contains(participant.id.uuidString))
+                    }).disabled(currGameplay.participants.contains(participant.id))
                 }
                 
                 ZStack {
@@ -132,9 +141,9 @@ struct GameView: View {
                     Button(action: {
                         updateGameplay()
                     }, label: {
-                        Text("Checkpoint!")
+                        Text("\(questions[room.gameplayIndex].options[1])")
                             .foregroundColor(.white)
-                    }).disabled(currGameplay.participants.contains(participant.id.uuidString))
+                    }).disabled(currGameplay.participants.contains(participant.id))
                 }
             }
             .padding(10)
@@ -147,9 +156,9 @@ struct GameView: View {
                     Button(action: {
                         updateGameplay()
                     }, label: {
-                        Text("Checkpoint!")
+                        Text("\(questions[room.gameplayIndex].options[2])")
                             .foregroundColor(.white)
-                    }).disabled(currGameplay.participants.contains(participant.id.uuidString))
+                    }).disabled(currGameplay.participants.contains(participant.id))
                 }
                 
                 ZStack {
@@ -159,9 +168,9 @@ struct GameView: View {
                     Button(action: {
                         updateGameplay()
                     }, label: {
-                        Text("Checkpoint!")
+                        Text("\(questions[room.gameplayIndex].options[3])")
                             .foregroundColor(.white)
-                    }).disabled(currGameplay.participants.contains(participant.id.uuidString))
+                    }).disabled(currGameplay.participants.contains(participant.id))
                 }
             }
             .padding(10)
@@ -170,13 +179,15 @@ struct GameView: View {
             
             HStack {
                 ForEach(room.participants, id: \.self) {
-                    participantId in AvatarGameplayView(participantId: participantId, hasResponded: hasResponded(participantId: participantId))
+                    participantId in AvatarGameplayView(participantId: participantId,
+                                                        hasResponded: hasResponded(participantId: participantId))
                 }
             }
             
-            NavigationLink(destination: LeaderboardView(room: $room, participant: $participant), isActive: .constant(room.gameplayIndex == 3)) {
+            NavigationLink(destination: LeaderboardView(room: $room, participant: $participant), isActive: .constant(room.gameplayIndex == questions.count-2)) {
                 EmptyView()
             }
+            
         }
         .navigationTitle("\(questions[room.gameplayIndex].prompt!)")
         .onAppear {
@@ -290,8 +301,9 @@ struct LobbyView: View {
     @Binding var room: Room
     @Binding var participant: Participant
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var timeRemaining = 1000
+    @State private var hasStarted: Bool = false
     
     func streamRoom() {
         database.collection("rooms").document(room.id)
@@ -310,11 +322,15 @@ struct LobbyView: View {
                 
                 if(data["startTime"] != nil) {
                     let startTime = (data["startTime"] as AnyObject).dateValue()
-                    timeRemaining = Int(Date().distance(to: startTime))
+                    let timeInInt = Int(Date().distance(to: startTime))
+                    
+                    if(timeInInt >= 0) {
+                        timeRemaining = timeInInt
+                    }
                 }
             }
     }
-    
+
     func updateRoom() {
         let docRef = database.collection("rooms")
         docRef.document(room.id).updateData(["gameplays": room.gameplays, "startTime": room.startTime as Any])
@@ -346,9 +362,9 @@ struct LobbyView: View {
             
             Spacer()
             
-            if(room.participants[0] == participant.id.uuidString) {
+            if(room.participants[0] == participant.id) {
                 Button(action: {
-                    room.startTime = Timestamp(date: Date().addingTimeInterval(4))
+                    room.startTime = Timestamp(date: Date().addingTimeInterval(5))
                     
                     for _ in 1...room.maxRound {
                         let gameplayId = UUID().uuidString
@@ -373,12 +389,12 @@ struct LobbyView: View {
                     if(timeRemaining == 0) {
                         Text("Good Luck!")
                     } else {
-                        Text("\(timeRemaining)")
+                        Text("\(timeRemaining > 6 ? 5 : timeRemaining )")
                     }
                 })
             }
             
-            NavigationLink(destination: GameView(room: $room, participant: $participant), isActive: .constant(timeRemaining == 0)) {
+            NavigationLink(destination: GameView(room: $room, participant: $participant), isActive: $hasStarted) {
                 EmptyView()
             }
             
@@ -397,6 +413,9 @@ struct LobbyView: View {
         .onReceive(timer) { time in
             if self.timeRemaining > 0 {
                 self.timeRemaining -= 1
+            } else {
+                hasStarted = true
+                self.timer.upstream.connect().cancel()
             }
         }
     }
@@ -444,8 +463,8 @@ struct HostView: View {
         .padding(.horizontal, 30)
         .navigationTitle("Host")
         .onAppear {
-            if(!room.participants.contains(participant.id.uuidString)) {
-                room.participants.append(participant.id.uuidString)
+            if(!room.participants.contains(participant.id)) {
+                room.participants.append(participant.id)
             }
             
             updateRoom()
@@ -481,7 +500,7 @@ struct JoinView: View {
     
     func updateRoom() {        
         let docRef = database.collection("rooms")
-        docRef.document(room.id).updateData(["participants": FieldValue.arrayUnion([participant.id.uuidString])])
+        docRef.document(room.id).updateData(["participants": FieldValue.arrayUnion([participant.id])])
     }
     
     var body: some View {
@@ -499,7 +518,7 @@ struct JoinView: View {
             }
             
             HStack {
-                Text("Participant ID: \(participant.id.uuidString)")
+                Text("Participant ID: \(participant.id)")
                     .font(.footnote)
                     .foregroundColor(.gray)
                 
@@ -515,7 +534,7 @@ struct JoinView: View {
             })
             .disabled(room.id == "")
             
-            NavigationLink(destination: LobbyView(room: $room, participant: $participant), isActive: .constant(room.participants.contains(participant.id.uuidString))) {
+            NavigationLink(destination: LobbyView(room: $room, participant: $participant), isActive: .constant(room.participants.contains(participant.id))) {
                 EmptyView()
             }
             
@@ -540,7 +559,7 @@ struct ContentView: View {
     
     func updateParticipant() {
         let docRef = database.collection("participants")
-        docRef.document(participant.id.uuidString).setData(["nickname": participant.nickname])
+        docRef.document(participant.id).setData(["nickname": participant.nickname])
     }
     
     var body: some View {
@@ -559,7 +578,7 @@ struct ContentView: View {
                 }
                 
                 HStack {
-                    Text("Participant ID: \(participant.id.uuidString)")
+                    Text("Participant ID: \(participant.id)")
                         .font(.footnote)
                         .foregroundColor(.gray)
                     

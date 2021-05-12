@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "77636ECD-D745-4DCA-9261-6E993483FB09"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BBA6044E-C6E7-414C-9842-B9A9DA9B3609"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "scavenger hunt/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "397"
+            endingLineNumber = "397"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "BBA6044E-C6E7-414C-9842-B9A9DA9B3609 - 10312fcc40e2995"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Spacer, SwiftUI.ForEach&lt;Swift.Array&lt;Swift.String&gt;, Swift.String, scavenger_hunt.AvatarView&gt;, SwiftUI.Spacer, SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;, SwiftUI.Spacer, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.disabled(Swift.Bool) -&gt; some&gt;&gt;.0&gt;, Swift.Optional&lt;SwiftUI.Button&lt;SwiftUI._ConditionalContent&lt;SwiftUI.Text, SwiftUI.Text&gt;&gt;&gt;, SwiftUI.NavigationLink&lt;SwiftUI.EmptyView, scavenger_hunt.GameView&gt;, Swift.Optional&lt;SwiftUI.NavigationLink&lt;SwiftUI.Text, scavenger_hunt.GameView&gt;&gt;)&gt; in scavenger_hunt.LobbyView.body.getter : some"
+                  moduleName = "scavenger hunt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jrmy/Clones/swifties/scavenger%20hunt/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "393"
+                  endingLineNumber = "393"
+                  offsetFromSymbolStart = "4052">
+               </Location>
+               <Location
+                  uuid = "BBA6044E-C6E7-414C-9842-B9A9DA9B3609 - d7926d55fdf5d247"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #7 () -&gt; SwiftUI.EmptyView in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Spacer, SwiftUI.ForEach&lt;Swift.Array&lt;Swift.String&gt;, Swift.String, scavenger_hunt.AvatarView&gt;, SwiftUI.Spacer, SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;, SwiftUI.Spacer, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.disabled(Swift.Bool) -&gt; some&gt;&gt;.0&gt;, Swift.Optional&lt;SwiftUI.Button&lt;SwiftUI._ConditionalContent&lt;SwiftUI.Text, SwiftUI.Text&gt;&gt;&gt;, SwiftUI.NavigationLink&lt;SwiftUI.EmptyView, scavenger_hunt.GameView&gt;, Swift.Optional&lt;SwiftUI.NavigationLink&lt;SwiftUI.Text, scavenger_hunt.GameView&gt;&gt;)&gt; in scavenger_hunt.LobbyView.body.getter : some"
+                  moduleName = "scavenger hunt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jrmy/Clones/swifties/scavenger%20hunt/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "394"
+                  endingLineNumber = "394"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D965759D-DD75-4BEE-ABC5-91DE8CF5BC85"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "scavenger hunt/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "D965759D-DD75-4BEE-ABC5-91DE8CF5BC85 - 1106d3550d9cc50a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of scavenger_hunt.LobbyView.hasStarted : Swift.Bool"
+                  moduleName = "scavenger hunt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jrmy/Clones/swifties/scavenger%20hunt/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "306"
+                  endingLineNumber = "306"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "D965759D-DD75-4BEE-ABC5-91DE8CF5BC85 - 2de8b9c97a936dd9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "scavenger_hunt.LobbyView.init(room: SwiftUI.Binding&lt;scavenger_hunt.Room&gt;, participant: SwiftUI.Binding&lt;scavenger_hunt.Participant&gt;) -&gt; scavenger_hunt.LobbyView"
+                  moduleName = "scavenger hunt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jrmy/Clones/swifties/scavenger%20hunt/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "306"
+                  endingLineNumber = "306"
+                  offsetFromSymbolStart = "704">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "30B97D7D-F5DE-4385-AFB8-F60515CDAE45"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "scavenger hunt/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E89F023-221D-4EC6-B494-8B3DB1AAFB61"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "scavenger hunt/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

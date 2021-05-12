@@ -290,6 +290,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"scavenger hunt/Preview Content\"";
+				DEVELOPMENT_TEAM = UL9E6HT6TG;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "scavenger hunt/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -311,6 +312,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"scavenger hunt/Preview Content\"";
+				DEVELOPMENT_TEAM = UL9E6HT6TG;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "scavenger hunt/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
