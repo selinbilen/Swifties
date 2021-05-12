@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SpriteKit
+import GameplayKit
 
 class ViewController: UIViewController {
 
@@ -21,20 +23,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var optionC: UIButton!
     @IBOutlet weak var optionD: UIButton!
     
-    let allQuestions = ProvidedQuestions()
+    var allQuestions = ProvidedQuestions()
     var questionNumber: Int = 0
     var score: Int = 0
     var selectedAnswer: Int = 0
+    var timerTest: Timer? = nil
+    var countDown = 0
+    var stopEverything = true
+    var scoreText = SKLabelNode()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        allQuestions.list.shuffle()
         nextQuestion()
         uptUI()
     }
 
     @IBAction func ansPressed(_ sender: UIButton) {
-        //print(selectedAnswer)
-        //print(sender.tag)
         if sender.tag == selectedAnswer{
             print("correct")
             score += 10
@@ -43,9 +48,12 @@ class ViewController: UIViewController {
         }
         questionNumber += 1
         nextQuestion()
+        countDown = 0
     }
     
     func nextQuestion(){
+        timerTest?.invalidate()
+        timerTest = Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(ViewController.startCountDown), userInfo: nil, repeats: true)
         if questionNumber <= allQuestions.list.count - 1{
             questionImage.image = UIImage(named:(allQuestions.list[questionNumber].questionImage))
             question.text = allQuestions.list[questionNumber].questionLbl
@@ -63,17 +71,27 @@ class ViewController: UIViewController {
             present(alert, animated: true, completion: nil)
         }
     }
-
     func uptUI(){
         scoreLabel.text = "Score: \(score)"
         questionCount.text = "\(questionNumber + 1)/\(allQuestions.list.count)"
-        progress.frame.size.width = (view.frame.size.width / CGFloat(allQuestions.list.count)) * CGFloat(questionNumber + 1)
     }
-    
     func restart(){
         score = 0
         questionNumber = 0
         nextQuestion()
+    }
+    @objc func startCountDown(){
+        if countDown < 21{
+            print(countDown)
+            progress.frame.size.width = (view.frame.size.width - 20.7 * CGFloat(countDown))
+            countDown += 1
+        }
+        if countDown == 21 {
+            countDown = 0
+            score = 0
+            questionNumber = questionNumber + 1
+            nextQuestion()
+        }
     }
 }
 
