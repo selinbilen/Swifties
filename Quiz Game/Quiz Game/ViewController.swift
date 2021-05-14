@@ -65,10 +65,12 @@ class ViewController: UIViewController {
             uptUI()
         }
         else {
-            let alert = UIAlertController(title: "Awesome", message: "End of Quiz. Do you want to start over?", preferredStyle: .alert)
-            let restartAction = UIAlertAction(title: "Restart", style: .default, handler: {action in self.restart()})
-            alert.addAction(restartAction)
-            present(alert, animated: true, completion: nil)
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "endGame") as! EndViewController
+            
+            vc.ScoreData = scoreLabel.text
+            
+            
+            self.present(vc, animated: false, completion: nil)
         }
     }
     func uptUI(){
