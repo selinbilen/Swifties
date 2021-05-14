@@ -11,24 +11,24 @@ class ProvidedQuestions{
     var list = [Questions]()
     
     init() {
-        list.append(Questions(image: "q1", questionText: "Do you know where this magnificent building was built which is  a temple for the gods? ", choiceA: "A. Romania", choiceB: "B. Italy", choiceC: "C. Greece", choiceD: "D. Iran", answer: 2))
+        list.append(Questions(image: "q1", questionText: "What year was Binghamton University founded?", choiceA: "A. 1945", choiceB: "B. 1946", choiceC: "C. 1955", choiceD: "D. 1956", answer: 2))
         
-        list.append(Questions(image: "q2", questionText: "Who knows what impressive performances were exhibited in this hall, which was opened for use in 1825 ... Well, where is this hall in your opinion?", choiceA: "A. Ukrain", choiceB: "B. Serbia", choiceC: "C. Poland", choiceD: "D. Russia", answer: 4))
+        list.append(Questions(image: "q2", questionText: "What is the Binghamton University athletic teams nickname?", choiceA: "A. Colonials", choiceB: "B. Indians", choiceC: "C. Spiedies", choiceD: "D. Bearcats", answer: 4))
         
-        list.append(Questions(image: "q3", questionText: "Let's get an estimate of where the historical building is located in this location, which looks like a corner from heaven!", choiceA: "A. Bosnia and Herzegovina", choiceB: "B. Bulgaria", choiceC: "C. Albania", choiceD: "D. Barbados", answer: 1))
+        list.append(Questions(image: "q3", questionText: "During the 1960's and seventies, the campus newspaper was called", choiceA: "A. Harpur Herald", choiceB: "B. Campus Crier", choiceC: "C. Colonial News", choiceD: "D. The Voice", answer: 3))
         
-        list.append(Questions(image: "q4", questionText: "In which country can this building, which is one of the largest cathedrals in Europe, be?.", choiceA: "A. Luxembourg", choiceB: "B. Italy", choiceC: "C. France", choiceD: "D. Portugal ", answer: 2))
+        list.append(Questions(image: "q4", questionText: "The University has great facilities, including its own bowling alley. How many lanes does the bowling alley have?", choiceA: "A. 12", choiceB: "B. 8", choiceC: "C. 6", choiceD: "D. 2", answer: 2))
         
-        list.append(Questions(image: "q5" , questionText: "There are not many words to say about this monastery, which has a perfect view ... So where is this monastery?", choiceA: "A. Peru" , choiceB: "B. Chili" , choiceC: "C. Turkey" , choiceD: "D. China", answer: 3))
+        list.append(Questions(image: "q5" , questionText: "In the late 1950's the current campus was under construction, by 1961 the school moves to Vestal. What body organ is the road system patterned after?", choiceA: "A. Kidney" , choiceB: "B. Eye" , choiceC: "C. Brain" , choiceD: "D. Stomach", answer: 3))
         
-        list.append(Questions(image: "q6" , questionText: "Do you know in which country this Sun temple, which is 765 years old, is located?", choiceA: "A. Mexico" , choiceB: "B. China" , choiceC: "C. India" , choiceD: "D. Peru", answer: 3))
+        list.append(Questions(image: "q6" , questionText: "In 1950, the school changed its name, what was the schools new name?", choiceA: "A. Harpur College" , choiceB: "B. Harvard College" , choiceC: "C. Hillier College" , choiceD: "D. Hinman College", answer: 1))
         
-        list.append(Questions(image: "q7", questionText: "In which country do you think this historical mosque was completed in 1848?", choiceA: "A. Palestine", choiceB: "B. Iran", choiceC: "C. Saudi Arabia", choiceD: "D. Egypt", answer: 4))
+        list.append(Questions(image: "q7", questionText: "What was the school's original name when founded in Endicott NY?", choiceA: "A. Binghamton College", choiceB: "B. Endwell School of Art", choiceC: "C. Triple Cities College", choiceD: "D. Hinman College", answer: 3))
         
-        list.append(Questions(image: "q8", questionText: "I suppose we all agree on how fascinating this city gate, whose construction began in 170 AD, is. So where is this magnificent city gate?", choiceA: "A. Germany", choiceB: "B. Romania", choiceC: "C. Greece", choiceD: "D. Poland", answer: 1))
+        list.append(Questions(image: "q8", questionText: "What is the output of the following program?", choiceA: "A. 5", choiceB: "B. 6", choiceC: "C. Runtime Error", choiceD: "D. Compile Error", answer: 4))
         
-        list.append(Questions(image: "q9" , questionText: "Can you guess what country this great Gothic convent church is in?", choiceA: "A. England" , choiceB: "B. France" , choiceC: "C. Austria" , choiceD: "D. Holland", answer: 1))
+        list.append(Questions(image: "q9" , questionText: "What will be the output of the following code snippet?", choiceA: "A. 4 2" , choiceB: "B. 0 4" , choiceC: "C. 4 0" , choiceD: "D. None of the mentioned", answer: 3))
         
-        list.append(Questions(image: "q10" , questionText: "Do you know in which country this historical building, which is used as a library today, is located?", choiceA: "A. Bahamas" , choiceB: "B. Pakistan" , choiceC: "C. Dominican Republic" , choiceD: "D. Egypt", answer: 2))
+        list.append(Questions(image: "q10" , questionText: "What will be the output of the following code snippet?", choiceA: "A. 8 16 64" , choiceB: "B. 2 16 4" , choiceC: "C. 4 8 16" , choiceD: "D. 2 4 8", answer: 2))
     }
 }
