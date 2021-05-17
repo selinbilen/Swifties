@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="lnV-JP-AYp">
             <objects>
-                <viewController id="gZ3-iV-i4w" sceneMemberID="viewController">
+                <viewController id="gZ3-iV-i4w" customClass="MainViewController" customModule="Quiz_Game" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rX7-WN-vlY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,7 +29,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jos-9J-o0B">
-                                <rect key="frame" x="20" y="637" width="374" height="92"/>
+                                <rect key="frame" x="20" y="632" width="374" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0051590669899999999" green="0.43734544520000002" blue="0.27056390050000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -37,7 +37,7 @@
                                     <color key="titleColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="y7x-1q-pkh" kind="presentation" destinationCreationSelector="swiftUIAction:" id="nKO-1u-Vp8"/>
+                                    <segue destination="y7x-1q-pkh" kind="show" destinationCreationSelector="swiftUIAction:" id="eD9-Km-T30"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="QtP-3z-eLs">
@@ -287,7 +287,7 @@
                 </hostingController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rcw-2Z-yee" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-100" y="469"/>
+            <point key="canvasLocation" x="-75" y="479"/>
         </scene>
     </scenes>
     <resources>

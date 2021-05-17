@@ -39,10 +39,6 @@ class ViewController: UIViewController {
         nextQuestion()
         uptUI()
     }
-    
-    @IBSegueAction func swiftUIAction(_ coder: NSCoder) -> UIViewController? {
-        return UIHostingController(coder: coder, rootView: ContentView())
-    }
 
     @IBAction func ansPressed(_ sender: UIButton) {
         if sender.tag == selectedAnswer{
