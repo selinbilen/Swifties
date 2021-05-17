@@ -8,6 +8,7 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import SwiftUI
 
 class ViewController: UIViewController {
 
@@ -37,6 +38,10 @@ class ViewController: UIViewController {
         allQuestions.list.shuffle()
         nextQuestion()
         uptUI()
+    }
+    
+    @IBSegueAction func swiftUIAction(_ coder: NSCoder) -> UIViewController? {
+        return UIHostingController(coder: coder, rootView: ContentView())
     }
 
     @IBAction func ansPressed(_ sender: UIButton) {

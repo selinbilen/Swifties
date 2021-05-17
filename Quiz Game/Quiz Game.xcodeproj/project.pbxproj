@@ -3,12 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B4532B6264EBD8600931449 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B4532B5264EBD8600931449 /* Main.storyboard */; };
-		1B4532B8264EBD9200931449 /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4532B7264EBD9200931449 /* EndViewController.swift */; };
+		178C9EF32652AF9300BA71D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 178C9EF22652AF9200BA71D5 /* Main.storyboard */; };
+		178C9EF52652AFC800BA71D5 /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178C9EF42652AFC800BA71D5 /* EndViewController.swift */; };
+		178C9EF72652B01900BA71D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 178C9EF62652B01900BA71D5 /* GoogleService-Info.plist */; };
+		178C9EF92652B02D00BA71D5 /* MultiplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178C9EF82652B02D00BA71D5 /* MultiplayerView.swift */; };
+		178C9EFC2652B08F00BA71D5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 178C9EFB2652B08F00BA71D5 /* FirebaseFirestore */; };
+		178C9EFE2652B08F00BA71D5 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 178C9EFD2652B08F00BA71D5 /* FirebaseFirestoreSwift-Beta */; };
 		6ABDE0B22634D49E00E1BE2B /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABDE0B12634D49E00E1BE2B /* Questions.swift */; };
 		6ABDE0B52634D5C400E1BE2B /* ProvidedQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABDE0B42634D5C400E1BE2B /* ProvidedQuestions.swift */; };
 		6AEF9F3D263475B200D89D55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEF9F3C263475B200D89D55 /* AppDelegate.swift */; };
@@ -19,8 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1B4532B5264EBD8600931449 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = "../../../Swifties-main/Quiz Game/Quiz Game/Main.storyboard"; sourceTree = "<group>"; };
-		1B4532B7264EBD9200931449 /* EndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndViewController.swift; path = "../../../Swifties-main/Quiz Game/Quiz Game/EndViewController.swift"; sourceTree = "<group>"; };
+		178C9EF22652AF9200BA71D5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		178C9EF42652AFC800BA71D5 /* EndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EndViewController.swift; path = ../EndViewController.swift; sourceTree = "<group>"; };
+		178C9EF62652B01900BA71D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		178C9EF82652B02D00BA71D5 /* MultiplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerView.swift; sourceTree = "<group>"; };
 		6ABDE0B12634D49E00E1BE2B /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		6ABDE0B42634D5C400E1BE2B /* ProvidedQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidedQuestions.swift; sourceTree = "<group>"; };
 		6AEF9F39263475B200D89D55 /* Quiz Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quiz Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +43,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				178C9EFC2652B08F00BA71D5 /* FirebaseFirestore in Frameworks */,
+				178C9EFE2652B08F00BA71D5 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,16 +70,18 @@
 		6AEF9F3B263475B200D89D55 /* Quiz Game */ = {
 			isa = PBXGroup;
 			children = (
+				178C9EF42652AFC800BA71D5 /* EndViewController.swift */,
 				6AEF9F3C263475B200D89D55 /* AppDelegate.swift */,
 				6AEF9F3E263475B200D89D55 /* SceneDelegate.swift */,
 				6AEF9F40263475B200D89D55 /* ViewController.swift */,
-				1B4532B7264EBD9200931449 /* EndViewController.swift */,
 				6AEF9F45263475B400D89D55 /* Assets.xcassets */,
-				1B4532B5264EBD8600931449 /* Main.storyboard */,
 				6AEF9F47263475B400D89D55 /* LaunchScreen.storyboard */,
 				6AEF9F4A263475B400D89D55 /* Info.plist */,
 				6ABDE0B12634D49E00E1BE2B /* Questions.swift */,
 				6ABDE0B42634D5C400E1BE2B /* ProvidedQuestions.swift */,
+				178C9EF22652AF9200BA71D5 /* Main.storyboard */,
+				178C9EF62652B01900BA71D5 /* GoogleService-Info.plist */,
+				178C9EF82652B02D00BA71D5 /* MultiplayerView.swift */,
 			);
 			path = "Quiz Game";
 			sourceTree = "<group>";
@@ -92,6 +102,10 @@
 			dependencies = (
 			);
 			name = "Quiz Game";
+			packageProductDependencies = (
+				178C9EFB2652B08F00BA71D5 /* FirebaseFirestore */,
+				178C9EFD2652B08F00BA71D5 /* FirebaseFirestoreSwift-Beta */,
+			);
 			productName = "Quiz Game";
 			productReference = 6AEF9F39263475B200D89D55 /* Quiz Game.app */;
 			productType = "com.apple.product-type.application";
@@ -119,6 +133,9 @@
 				Base,
 			);
 			mainGroup = 6AEF9F30263475B200D89D55;
+			packageReferences = (
+				178C9EFA2652B08F00BA71D5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 6AEF9F3A263475B200D89D55 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -133,9 +150,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B4532B6264EBD8600931449 /* Main.storyboard in Resources */,
 				6AEF9F49263475B400D89D55 /* LaunchScreen.storyboard in Resources */,
+				178C9EF72652B01900BA71D5 /* GoogleService-Info.plist in Resources */,
 				6AEF9F46263475B400D89D55 /* Assets.xcassets in Resources */,
+				178C9EF32652AF9300BA71D5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,8 +164,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B4532B8264EBD9200931449 /* EndViewController.swift in Sources */,
+				178C9EF52652AFC800BA71D5 /* EndViewController.swift in Sources */,
 				6AEF9F41263475B200D89D55 /* ViewController.swift in Sources */,
+				178C9EF92652B02D00BA71D5 /* MultiplayerView.swift in Sources */,
 				6ABDE0B22634D49E00E1BE2B /* Questions.swift in Sources */,
 				6ABDE0B52634D5C400E1BE2B /* ProvidedQuestions.swift in Sources */,
 				6AEF9F3D263475B200D89D55 /* AppDelegate.swift in Sources */,
@@ -345,6 +364,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		178C9EFA2652B08F00BA71D5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		178C9EFB2652B08F00BA71D5 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 178C9EFA2652B08F00BA71D5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		178C9EFD2652B08F00BA71D5 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 178C9EFA2652B08F00BA71D5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6AEF9F31263475B200D89D55 /* Project object */;
 }

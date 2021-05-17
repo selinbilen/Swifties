@@ -36,6 +36,9 @@
                                 <state key="normal" title="Multi Player">
                                     <color key="titleColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                 </state>
+                                <connections>
+                                    <segue destination="y7x-1q-pkh" kind="presentation" destinationCreationSelector="swiftUIAction:" id="nKO-1u-Vp8"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="QtP-3z-eLs">
                                 <rect key="frame" x="46" y="70" width="323" height="387"/>
@@ -275,6 +278,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-100.00000000000001" y="-224.33035714285714"/>
+        </scene>
+        <!--Hosting Controller-->
+        <scene sceneID="oig-m8-51f">
+            <objects>
+                <hostingController id="y7x-1q-pkh" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Vq4-Sw-ohm"/>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rcw-2Z-yee" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-100" y="469"/>
         </scene>
     </scenes>
     <resources>
