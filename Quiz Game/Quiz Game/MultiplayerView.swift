@@ -390,10 +390,11 @@ struct LobbyView: View {
   }
 
   func actionSheet() {
-    let urlShare = "\(room.id)"
-
-      let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
-      UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
+    UIPasteboard.general.string = room.id
+//    let urlShare = "\(room.id)"
+//
+//      let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
+//      UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
   }
 
   var body: some View {
@@ -420,11 +421,11 @@ struct LobbyView: View {
               room.startTime = Timestamp(date: Date().addingTimeInterval(5))
 
               for _ in 1...room.maxRound {
-              let gameplayId = UUID().uuidString
+                  let gameplayId = UUID().uuidString
 
-              let docRef = database.collection("gameplays")
-              docRef.document(gameplayId).setData(["participants": [], "timestamps": []])
-              room.gameplays.append(gameplayId)
+                  let docRef = database.collection("gameplays")
+                  docRef.document(gameplayId).setData(["participants": [], "timestamps": []])
+                  room.gameplays.append(gameplayId)
               }
 
               updateRoom()

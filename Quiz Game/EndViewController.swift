@@ -8,20 +8,11 @@
 import UIKit
 
 class EndViewController: UIViewController {
-    
-    
-
-    
     @IBOutlet weak var RestartButton: UIButton!
-    
     @IBOutlet weak var ScoreLabel: UILabel!
     
-    
     var ScoreData:String!
-    
-    
-
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
 
